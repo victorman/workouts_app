@@ -21,7 +21,8 @@ public class WorkoutPlanViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         //TODO inflate layout
+        View rootView = inflater.inflate(R.layout.fragment_workout_plan_view,container,false);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 }

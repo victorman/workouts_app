@@ -15,7 +15,7 @@ public class WorkoutListAdapter extends CursorAdapter {
 
     //TODO store a workout item for workout exercises.
 
-    private static final int VIEW_TYPE_HEADER = 0;
+    //private static final int VIEW_TYPE_HEADER = 0;
     private static final int VIEW_TYPE_GENERAL = 1;
     private static final int VIEW_TYPE_COUNT = 2;
 
@@ -27,13 +27,10 @@ public class WorkoutListAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
 
         //TODO populate a list item view with workouts, workout titles, and times
-        if(getItemViewType(cursor.getPosition()) == VIEW_TYPE_GENERAL) {
-            ViewHolder viewHolder = (ViewHolder) view.getTag();
+        ViewHolder viewHolder = (ViewHolder) view.getTag();
 
-            viewHolder.titleView.setText("Workout " + cursor.getPosition());
-
-            viewHolder.durationView.setText("10m");
-        }
+        viewHolder.titleView.setText(cursor.getString(1));
+        viewHolder.durationView.setText("10m");
     }
 
     @Override
@@ -41,8 +38,9 @@ public class WorkoutListAdapter extends CursorAdapter {
         int viewType = getItemViewType(cursor.getPosition());
 
 
-        int layoutId = -1;
+        int layoutId = R.layout.workout_list_item;
 
+        /*
         switch (viewType) {
             case VIEW_TYPE_GENERAL: {
                 layoutId = R.layout.workout_list_item;
@@ -53,6 +51,7 @@ public class WorkoutListAdapter extends CursorAdapter {
                 break;
             }
         }
+        */
 
         View view = LayoutInflater.from(context).inflate(layoutId, parent, false);
 
@@ -69,7 +68,7 @@ public class WorkoutListAdapter extends CursorAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return (position == 0) ? VIEW_TYPE_HEADER : VIEW_TYPE_GENERAL;
+        return VIEW_TYPE_GENERAL;
     }
 
     public static class ViewHolder {
