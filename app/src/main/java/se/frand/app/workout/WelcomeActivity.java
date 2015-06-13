@@ -10,12 +10,12 @@ public class WelcomeActivity extends ActionBarActivity {
 
     private static final String WORKOUT_FRAGMENT_TAG = "WORKOUT_FRAGMENT";
 
-    private boolean mTwoPaneMode = false;
+    private boolean mTwoPaneMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.welcome_activity);
 
         if(findViewById(R.id.workout_plan_container) != null) {
             mTwoPaneMode = true;
@@ -28,8 +28,12 @@ public class WelcomeActivity extends ActionBarActivity {
             mTwoPaneMode = false;
         }
 
-        WorkoutListFragment listFragment = ((WorkoutListFragment) getSupportFragmentManager()
-            .findFragmentById(R.id.fragment_workout_list));
+        //WorkoutListFragment listFragment = ((WorkoutListFragment) getSupportFragmentManager()
+        //    .findFragmentById(R.id.fragment_workout_list));
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.list_workouts_fragment_segment_small, new WorkoutListFragment())
+                .commit();
     }
 
 
